@@ -75,7 +75,7 @@ class App extends React.Component {
                     key={c.id}
                     id={c.id}
                     img={c.img}
-                    birth={c.birth}
+                    birthday={c.birthday}
                     job={c.job}
                     name={c.name}
                     gender={c.gender}

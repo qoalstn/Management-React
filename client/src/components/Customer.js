@@ -11,7 +11,7 @@ class Customer extends React.Component {
           <img src={this.props.img} alt="profile" />
         </TableCell>
         <TableCell>{this.props.name}</TableCell>
-        <TableCell>{this.props.birth}</TableCell>
+        <TableCell>{this.props.birthday}</TableCell>
         <TableCell>{this.props.gender}</TableCell>
         <TableCell>{this.props.job}</TableCell>
       </TableRow>

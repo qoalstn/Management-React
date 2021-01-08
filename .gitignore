@@ -1,6 +1,9 @@
 # Compiled files
 dist/
 
+#database
+/database.json
+
 # Config file
 config.js
 
