@@ -22,6 +22,19 @@ const styles = (theme) => ({
 });
 
 class App extends React.Component {
+  state = {
+    customers: "",
+  };
+  componentDidMount() {
+    this.callApi()
+      .then((res) => this.setState({ customers: res }))
+      .catch((err) => console.log(err));
+  }
+  callApi = async () => {
+    const response = await fetch("/api/hello");
+    const body = await response.json();
+    return body;
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -38,51 +51,26 @@ class App extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customers.map((c) => {
-              return (
-                <Customer
-                  key={c.id}
-                  id={c.id}
-                  img={c.img}
-                  birth={c.birth}
-                  job={c.job}
-                  name={c.name}
-                  gender={c.gender}
-                />
-              );
-            })}
+            {this.state.customers
+              ? this.state.customers.map((c) => {
+                  return (
+                    <Customer
+                      key={c.id}
+                      id={c.id}
+                      img={c.img}
+                      birth={c.birth}
+                      job={c.job}
+                      name={c.name}
+                      gender={c.gender}
+                    />
+                  );
+                })
+              : ""}
           </TableBody>
         </Table>
       </Paper>
     );
   }
 }
-
-const customers = [
-  {
-    id: "1",
-    img: "https://placeimg.com/300/100/1",
-    name: "Aria",
-    birth: "2008088",
-    gender: "female",
-    job: "student",
-  },
-  {
-    id: "2",
-    img: "https://placeimg.com/300/100/2",
-    name: "Star",
-    birth: "20080977",
-    gender: "male",
-    job: "student",
-  },
-  {
-    id: "3",
-    img: "https://placeimg.com/300/100/3",
-    name: "kei",
-    birth: "20887088",
-    gender: "female",
-    job: "student",
-  },
-];
 
 export default withStyles(styles)(App);
